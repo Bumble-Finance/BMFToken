@@ -1,4 +1,5 @@
-pragma solidity 0.5.16;
+// SPDX-License-Identifier: MIT
+pragma solidity >=0.7.0 <0.9.0;
 
 interface IBEP20 {
   /**
@@ -105,9 +106,9 @@ interface IBEP20 {
 contract Context {
   // Empty internal constructor, to prevent people from mistakenly deploying
   // an instance of this contract, which should be used via inheritance.
-  constructor () internal { }
+  constructor () { }
 
-  function _msgSender() internal view returns (address payable) {
+  function _msgSender() internal view returns (address) {
     return msg.sender;
   }
 
@@ -286,7 +287,7 @@ contract Ownable is Context {
   /**
    * @dev Initializes the contract setting the deployer as the initial owner.
    */
-  constructor () internal {
+  constructor () {
     address msgSender = _msgSender();
     _owner = msgSender;
     emit OwnershipTransferred(address(0), msgSender);
@@ -349,7 +350,7 @@ contract BEP20Token is Context, IBEP20, Ownable {
   string private _symbol;
   string private _name;
 
-  constructor() public {
+  constructor() {
     _name = "Bumble Finance";
     _symbol = "BMF";
     _decimals = 18;
